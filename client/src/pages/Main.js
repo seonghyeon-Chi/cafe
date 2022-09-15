@@ -5,9 +5,10 @@ import CartList from '../components/CartList'
 import '../App.css'
 import axios from 'axios'
 
-const Main = ({ items, cart, setCart, getCookie }) => {
+const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [itemdata, setItemdata] = useState({
+    id: '',
     name: '',
     price: '',
     image: ''
@@ -16,6 +17,7 @@ const Main = ({ items, cart, setCart, getCookie }) => {
 
   const handleItemData = (data) => {
     setItemdata({
+      id: data.id,
       name: data.name,
       price: data.price,
       image: data.image
@@ -30,12 +32,22 @@ const Main = ({ items, cart, setCart, getCookie }) => {
     let totalPrice = data.map(item => item.total).reduce((pre, cur) => pre + cur)
     let userId = getCookie('userId')
     axios.post('http://localhost:4000/order', {
-      order: data,
+      data: data,
       totalPrice: totalPrice,
       userId: userId
     })
     setCart([]);
-  
+  }
+
+  const handlePayment = (data) => {
+    // let totalPrice = data.map(item => item.total).reduce((pre, cur) => pre + cur)
+    // console.log(totalPrice)
+    let userId = getCookie('userId')
+    axios.post('http://localhost:4000/payment', {
+      data: data,
+      // totalPrice: totalPrice,
+      userId: userId
+    })
   }
 
   const quantityMinus = () => {
@@ -52,6 +64,7 @@ const Main = ({ items, cart, setCart, getCookie }) => {
     setCount(1)
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -83,7 +96,9 @@ const Main = ({ items, cart, setCart, getCookie }) => {
       <CartList 
         width={200}
         cart={cart}
+        isOrder={isOrder}
         handleOrder={handleOrder}
+        handlePayment={handlePayment}
       />
       </div>
     </div>

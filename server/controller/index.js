@@ -4,5 +4,6 @@ module.exports = {
   userinfo: require('./user/userinfo'),
   iteminfo: require('./item/iteminfo'),
   item: require('./item/item'),
-  order: require('./order/order')
+  order: require('./order/order'),
+  payment: require('./payment/payment')
 }

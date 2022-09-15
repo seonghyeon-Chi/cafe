@@ -24,7 +24,7 @@ const app = express()
 // const sessionStore = new MySQLStore(option)
 
 app.use(session({
-  secret: 'password',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: new fileStore(),
@@ -59,6 +59,7 @@ app.get('/loginCheck', (req, res) => {
   }
 })
 app.post('/order', controller.order)
+app.post('/payment', controller.payment)
 
 // sequelize.sync({ force: false })
 // .then(() => {

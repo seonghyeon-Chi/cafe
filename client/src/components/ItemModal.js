@@ -45,7 +45,7 @@ const ItemModal = ({ open, close, itemdata, handleSubmit, quantityMinus, quantit
             </div>
             <span>{'total: '+ count * itemdata.price}</span>
             <div>
-              <button className="" onClick={() => handleSubmit({name: itemdata.name, image: itemdata.image, count: count, total: count * itemdata.price})}>장바구니에 담기</button>
+              <button className="" onClick={() => handleSubmit({id: itemdata.id, name: itemdata.name, image: itemdata.image, count: count, total: count * itemdata.price})}>장바구니에 담기</button>
             </div>
           </div>
         </main>

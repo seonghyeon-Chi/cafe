@@ -24,7 +24,7 @@ export default function Login ({ setIsLogin }) {
         phone_number: userinfo.phone_number
       })
       .then(res => {
-        sessionStorage.setItem('id', res.data.userId);
+        // sessionStorage.setItem('id', res.data.userId);
         setIsLogin(true)
         history.push("/")
       })

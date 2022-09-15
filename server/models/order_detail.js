@@ -10,11 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.order_detail.belongsTo(models.item, {
+        foreignKey: 'item_id',
+      })
+      models.item.hasMany(models.order_detail, {
+        foreignKey: 'item_id',
+      })
+      models.order_detail.belongsTo(models.order, {
+        foreignKey: 'order_id'
+      })
+      models.order.hasMany(models.order_detail, {
+        foreignKey: 'order_id'
+      })
     }
   }
   order_detail.init({
-    item: DataTypes.STRING,
+    name: DataTypes.STRING,
     count: DataTypes.INTEGER
   }, {
     sequelize,

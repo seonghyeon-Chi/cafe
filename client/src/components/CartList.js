@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 
-const CartList = ({ cart, handleOrder }) => {
+const CartList = ({ cart, handleOrder, handlePayment }) => {
 
   return (
     <div id='item-list-container'>
@@ -27,9 +27,10 @@ const CartList = ({ cart, handleOrder }) => {
             </div>
           )}
         </div>
-        <div><button onClick={() => handleOrder(cart)}>주문</button></div>
+          <button onClick={() => handleOrder(cart)}>주문</button>
+          <button onClick={() => handlePayment(cart)}>결제</button>
       </div>
     </div>
-    )
-  }
+  )
+}
 export default CartList;

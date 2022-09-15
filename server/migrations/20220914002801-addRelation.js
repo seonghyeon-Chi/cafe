@@ -17,13 +17,13 @@ module.exports = {
       onUpdate: "cascade",
     });
 
-    await queryInterface.addColumn("orders", "item_id", {
+    await queryInterface.addColumn("order_details", "item_id", {
       type: Sequelize.INTEGER,
     });
-    await queryInterface.addConstraint("orders", {
+    await queryInterface.addConstraint("order_details", {
       fields: ["item_id"],
       type: "foreign key",
-      name: "item_id_order_fk",
+      name: "item_id_order_detail_fk",
       references: {
         table: "items",
         field: "id",
@@ -62,13 +62,13 @@ module.exports = {
       onUpdate: "cascade",
     });
 
-    await queryInterface.addColumn("payments", "item_id", {
+    await queryInterface.addColumn("payment_details", "item_id", {
       type: Sequelize.INTEGER,
     });
-    await queryInterface.addConstraint("payments", {
+    await queryInterface.addConstraint("payment_details", {
       fields: ["item_id"],
       type: "foreign key",
-      name: "item_id_payment_fk",
+      name: "item_id_payment_detail_fk",
       references: {
         table: "items",
         field: "id",
@@ -97,11 +97,11 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeColumn("orders", "user_id");
-    await queryInterface.removeColumn("orders", "item_id");
+    await queryInterface.removeColumn("order_details", "item_id");
     await queryInterface.removeColumn("order_details", "order_id");
 
     await queryInterface.removeColumn("payments", "user_id");
-    await queryInterface.removeColumn("payments", "item_id");
+    await queryInterface.removeColumn("payment_details", "item_id");
     await queryInterface.removeColumn("payment_details", "payment_id");
   },
 };

@@ -9,6 +9,7 @@ import axios from 'axios'
 export default function App() {
   const [item, setItem] = useState([])
   const [isLogin, setIsLogin] = useState(Boolean(document.cookie.match('(^|;) ?' + 'userId' + '=([^;]*)(;|$)')));
+  const [isOrder, setIsOrder] = useState(false)
   const [cart, setCart] = useState([])
   const history = useHistory();
 
@@ -35,6 +36,17 @@ export default function App() {
     .then(data => setItem(data.data.iteminfo))
   }
 
+  const loadOrder = async () => {
+    const userId = getCookie('userId')
+    await axios.get('http://localhost:4000/orderinfo', {
+      params: {
+        userId: userId
+      }
+    }).then((res) => {
+      setIsOrder(res.data.isOrder)
+    })
+  }
+
   useEffect(() => {
     loadItem()
   }, [])
@@ -53,6 +65,7 @@ export default function App() {
             cart={cart}
             setCart={setCart}
             getCookie={getCookie}
+            isOrder={isOrder}
           ></Main>
         </Route>
         <Route path="/login">
