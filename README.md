@@ -33,37 +33,37 @@ session을 사용했고, session을 만들고 cookie를 통해 주고 받기 위
 
 Controller는 login, logout, item, order, payment로 총 5개로 구성했습니다.
 
-login은 phone_number를 body 값으로 받아 사용자가 이미 가입되어 있는지를 확인한다. 가입되어 있으면 해당 사용자의 id를 세션에 저장하고 쿠키를 통해 식별자를 클라이언트로 보낸다. 가입되어 있지 않으면 body 값으로 user 테이블의 instance를 만들고 마찬가지로 해당 사용자의 id를 세션에 저장하고 쿠키를 통해 식별자를 클라이언트로 보낸다.
+login은 phone_number를 body 값으로 받아 사용자가 이미 가입되어 있는지를 확인합니다. 가입되어 있으면 해당 사용자의 id를 세션에 저장하고 쿠키를 통해 식별자를 클라이언트로 보냅니다. 가입되어 있지 않으면 body 값으로 user 테이블의 instance를 만들고 마찬가지로 해당 사용자의 id를 세션에 저장하고 쿠키를 통해 식별자를 클라이언트로 보냅니다.
 
-logout은 먼저 세션의 식별자의 유무를 확인한다. 식별자가 있으면 세션과 쿠키를 삭제한다.
+logout은 먼저 세션의 식별자의 유무를 확인합니다. 식별자가 있으면 세션과 쿠키를 삭제합니다.
 
-item은 DB item 테이블의 모든 데이터를 불러온다.
+item은 DB item 테이블의 모든 데이터를 불러옵니다.
 
-order는 body값으로 장바구니의 데이터, 그 장바구니의 총 가격, 식별자를 받아온다. 식별자 유무를 확인하여 order 테이블에 식별자를 user_id 값으로 보내서 저장하고, 거기에 일대다 관계로 연결되어 있는 order_detail 테이블에 장바구니 데이터를 저장한다.
+order는 body값으로 장바구니의 데이터, 그 장바구니의 총 가격, 식별자를 받아옵니다. 식별자 유무를 확인하여 order 테이블에 식별자를 user_id 값으로 보내서 저장하고, 거기에 일대다 관계로 연결되어 있는 order_detail 테이블에 장바구니 데이터를 저장합니다.
 
-payment는 body값으로 식별자를 받아온다. 식별자를 통해 order 테이블과 연결된 order_detail 테이블을 조회한다. 조회된 order, order_detail 테이블의 데이터들을 payment, payment_detail에 저장한다. 그리고 해당 order, order_detail의 instance를 삭제한다.
+payment는 body값으로 식별자를 받아옵니다. 식별자를 통해 order 테이블과 연결된 order_detail 테이블을 조회합니다. 조회된 order, order_detail 테이블의 데이터들을 payment, payment_detail에 저장합니다. 그리고 해당 order, order_detail의 instance를 삭제합니다.
 
 ***
 
 ## 결과 화면
 
 ### 메인 화면
-<img src="./img/메인화면.png" width="600px" height="400px">
+<img src="./img/메인화면.png" width="700px" height="400px">
 
 ### 로그인 화면
-<img src="./img/로그인화면.png" width="600px" height="400px">
+<img src="./img/로그인화면.png" width="700px" height="400px">
 
 ### 로그인된 화면
-<img src="./img/로그인된 화면.png" width="600px" height="400px">
+<img src="./img/로그인된 화면.png" width="700px" height="400px">
 
 ### 메뉴선택 화면
-<img src="./img/메뉴선택 화면.png" width="600px" height="400px">
+<img src="./img/메뉴선택 화면.png" width="700px" height="400px">
 
 ### 장바구니 화면
-<img src="./img/장바구니 화면.png" width="600px" height="400px">
+<img src="./img/장바구니 화면.png" width="700px" height="400px">
 
 ### 주문 버튼 클릭 화면
-<img src="./img/주문버튼클릭 화면.png" width="600px" height="400px">
+<img src="./img/주문버튼클릭 화면.png" width="700px" height="400px">
 
 ### 주문 후 order 테이블
 <img src="./img/주문후 order.png">
@@ -72,7 +72,7 @@ payment는 body값으로 식별자를 받아온다. 식별자를 통해 order �
 <img src="./img/주문후 order_detail.png">
 
 ### 결제 버튼 클릭 화면
-<img src="./img/결제버튼클릭 화면.png" width="600px" height="400px">
+<img src="./img/결제버튼클릭 화면.png" width="700px" height="400px">
 
 ### 결제 후 payment 테이블
 <img src="./img/결제후 payment.png">
