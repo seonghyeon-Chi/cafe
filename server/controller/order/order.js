@@ -3,7 +3,6 @@ const { order_detail } = require('../../models')
 
 module.exports = async (req, res) => {
   const {data, totalPrice, userId} = req.body
-  // console.log(order, totalPrice, userId)
   try {
     if (userId) {
       await order.create({
