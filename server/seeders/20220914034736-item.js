@@ -93,6 +93,41 @@ module.exports = {
       createdAt: '2022-09-14 13:12',
       updatedAt: '2022-09-14 13:12'
     }], {});
+    await queryInterface.bulkInsert('items', [{
+      name: '딸기라떼',
+      price: 3500,
+      image: '14.png',
+      createdAt: '2022-09-14 13:12',
+      updatedAt: '2022-09-14 13:12'
+    }], {});
+    await queryInterface.bulkInsert('items', [{
+      name: '밀크티',
+      price: 3800,
+      image: '15.png',
+      createdAt: '2022-09-14 13:12',
+      updatedAt: '2022-09-14 13:12'
+    }], {});
+    await queryInterface.bulkInsert('items', [{
+      name: '흑당밀크(우유)',
+      price: 3500,
+      image: '16.png',
+      createdAt: '2022-09-14 13:12',
+      updatedAt: '2022-09-14 13:12'
+    }], {});
+    await queryInterface.bulkInsert('items', [{
+      name: '민트초코오레오라떼',
+      price: 3500,
+      image: '17.png',
+      createdAt: '2022-09-14 13:12',
+      updatedAt: '2022-09-14 13:12'
+    }], {});
+    await queryInterface.bulkInsert('items', [{
+      name: '그린티라떼',
+      price: 3500,
+      image: '18.png',
+      createdAt: '2022-09-14 13:12',
+      updatedAt: '2022-09-14 13:12'
+    }], {});
   },
 
   async down (queryInterface, Sequelize) {

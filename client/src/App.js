@@ -25,26 +25,15 @@ export default function App() {
   }
 
   const handleLogout = () => {
-    axios.get('http://localhost:4000/logout')
+    axios.get('https://localhost:4000/logout')
     deleteCookie('userId')
     setIsLogin(false)
     history.push('/');
   };
   
   const loadItem = async () => {
-    await axios.get('http://localhost:4000/iteminfo')
+    await axios.get('https://localhost:4000/item')
     .then(data => setItem(data.data.iteminfo))
-  }
-
-  const loadOrder = async () => {
-    const userId = getCookie('userId')
-    await axios.get('http://localhost:4000/orderinfo', {
-      params: {
-        userId: userId
-      }
-    }).then((res) => {
-      setIsOrder(res.data.isOrder)
-    })
   }
 
   useEffect(() => {

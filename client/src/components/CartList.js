@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 
-const CartList = ({ cart, handleOrder, handlePayment }) => {
+const CartList = ({ cart, handleOrder, handlePayment, handleDeleteMenu }) => {
 
   return (
     <div id='item-list-container'>
@@ -17,9 +17,7 @@ const CartList = ({ cart, handleOrder, handlePayment }) => {
               {cart.map((item, idx) => {
                 return (
                   <ul className=''>
-                    <li>{'메뉴명: '+item.name}</li>
-                    <li>{'수량: '+item.count}</li>
-                    <li>{'금액: '+item.total}</li>
+                    <li>{'메뉴명:'+item.name+' '}{'수량:'+item.count+' '}{'금액:'+item.total+' '}<button onClick={() => handleDeleteMenu(item.name)}>&times;</button></li>              
                   </ul>
                 )
               })}
@@ -27,8 +25,8 @@ const CartList = ({ cart, handleOrder, handlePayment }) => {
             </div>
           )}
         </div>
-          <button onClick={() => handleOrder(cart)}>주문</button>
-          <button onClick={() => handlePayment(cart)}>결제</button>
+          <button className="order_button" onClick={() => handleOrder(cart)}>주문</button>
+          <button className="payment_button" onClick={() => handlePayment()}>결제</button>
       </div>
     </div>
   )

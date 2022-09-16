@@ -13,6 +13,8 @@ module.exports = async (req, res) => {
       }
     });
     res.cookie('userId', req.session.userId)
+    // console.log(req.session)
+    console.log('로그인 성공')
     res.status(200).send({message: '로그인 성공'})
   } 
   else {
@@ -28,10 +30,12 @@ module.exports = async (req, res) => {
         }
       });
       res.cookie('userId', req.session.userId)
-      res.status(200).json({ message: '회원가입 성공'})
+      console.log(req.session.userId)
+      res.status(201).json({ message: '회원가입 성공'})
     }
     catch (err) {
-      res.status(500).json({ message: err })
+      console.log(err)
+      res.status(400).json({ message: '로그인 실패' })
     }
   }
 }

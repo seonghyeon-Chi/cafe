@@ -5,6 +5,35 @@
   /* background-color: black; */
 }
 
+.order_button {
+  position: relative;
+  width: 33.333%;
+  display: table-cell;
+  text-align: center;
+  color: black;
+  background-color: skyblue;
+  text-decoration: none;
+  justify-content: space-evenly;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: 0.2s ease color;
+}
+
+.payment_button {
+  position: relative;
+  width: 33.333%;
+  display: table-cell;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  justify-content: space-evenly;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: 0.2s ease color;
+}
+
 .cart_list {
   display: flex;
 }
@@ -654,8 +683,9 @@ ul.pagination li a.active {
 
 .movie_info {
   margin-left: 200px;
+  font-size: 1.3rem;
+  font-weight: 800;
   color: white;
-  font-size: 18px;
   position: relative;
   top: -62px;
 }

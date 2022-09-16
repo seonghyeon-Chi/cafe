@@ -20,7 +20,7 @@ export default function Login ({ setIsLogin }) {
     if (!userinfo.phone_number) {
       setErrormessage('번호를 입력해야 합니다')
     } else {
-      axios.post('http://localhost:4000/login',{
+      axios.post('https://localhost:4000/login',{
         phone_number: userinfo.phone_number
       })
       .then(res => {

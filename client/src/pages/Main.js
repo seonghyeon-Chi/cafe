@@ -25,29 +25,49 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
   }
 
   const handleSubmit = (data) => {
-    setCart([...cart, data])
+    let userId = getCookie('userId')
+    if (userId) {
+      setCart([...cart, data])
+    } else {
+      alert('로그인이 필요합니다')
+    }
+  }
+
+  const handleDeleteMenu = (data) => {
+    setCart(cart.filter(el => {
+      if (el.name !== data) {
+        return el
+      }
+    }))
   }
 
   const handleOrder = (data) => {
     let totalPrice = data.map(item => item.total).reduce((pre, cur) => pre + cur)
     let userId = getCookie('userId')
-    axios.post('http://localhost:4000/order', {
-      data: data,
-      totalPrice: totalPrice,
-      userId: userId
-    })
-    setCart([]);
+    if (userId && data.length !== 0) {
+      axios.post('https://localhost:4000/order', {
+        data: data,
+        totalPrice: totalPrice,
+        userId: userId
+      })
+      setCart([]);
+      alert('주문이 완료되었습니다')
+    } else if (!userId) {
+      alert('로그인이 필요합니다')
+    } 
   }
 
-  const handlePayment = (data) => {
-    // let totalPrice = data.map(item => item.total).reduce((pre, cur) => pre + cur)
-    // console.log(totalPrice)
+  const handlePayment = () => {
     let userId = getCookie('userId')
-    axios.post('http://localhost:4000/payment', {
-      data: data,
-      // totalPrice: totalPrice,
-      userId: userId
-    })
+    if (userId) {
+      axios.post('https://localhost:4000/payment', {
+        userId: userId
+      }).then(res => {
+        alert('결제가 완료되었습니다')
+      })
+    } else {
+      alert('로그인이 필요합니다')
+    }
   }
 
   const quantityMinus = () => {
@@ -76,7 +96,7 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
       <div className="poster_wrapper">
         {items.map((item) =>
         <span onClick = {() => handleItemData(item)}>
-        <img onClick={openModal} className="poster" src={item.image}></img>
+        <span><img onClick={openModal} className="poster" src={`/img/${item.image}`}></img></span>
         </span>)}  
       </div>
       <ItemModal
@@ -99,6 +119,7 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
         isOrder={isOrder}
         handleOrder={handleOrder}
         handlePayment={handlePayment}
+        handleDeleteMenu={handleDeleteMenu}
       />
       </div>
     </div>

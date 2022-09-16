@@ -14,15 +14,6 @@ const controller = require('./controller')
 
 const app = express()
 
-// const option = {
-//   host: process.env.MYSQL_HOST,
-//   user: process.env.MYSQL_USERNAME,
-//   password: process.env.MYSQL_PASSWORD,
-//   database: process.env.MYSQL_DATABASE
-// };
-
-// const sessionStore = new MySQLStore(option)
-
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -30,61 +21,42 @@ app.use(session({
   store: new fileStore(),
   // new MemoryStore({ checkPeriod: 1000 * 60 * 5 }),
   cookie: {
-    // path: '/',
+    path: '/',
     httpOnly: true,
-    maxAge: 60 * 30
-    // secure: true
+    // expires : new Date(Date.now() + (60 * 30))
+    secure: true
   }
 }))
+
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: ['https://localhost:3000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT' ,'OPTIONS', 'DELETE']
 }))
 
-app.get('/userinfo', controller.userinfo)
 app.post('/login', controller.login)
 app.get('/logout', controller.logout)
-app.post('/item', controller.item)
-app.get('/iteminfo', controller.iteminfo)
-app.get('/loginCheck', (req, res) => {
-  if (req.session.userId) {
-    res.send({loggedIn : true, loginData: req.session.userId})
-  } else {
-    res.send({loggedIn: false})
-  }
-})
+app.get('/item', controller.item)
 app.post('/order', controller.order)
 app.post('/payment', controller.payment)
 
-// sequelize.sync({ force: false })
-// .then(() => {
-//     console.log('데이터베이스 연결 성공');
-// })
-// .catch((err) => {
-//     console.error(err);
-// });
 
-// https.createServer(
-//   {
-//     key: fs.readFileSync(__dirname + '/key.pem', 'utf-8'),
-//     cert: fs.readFileSync(__dirname + '/cert.pem', 'utf-8')
-//   },
-//   app.use('/', (req,res) => {
-//     res.send('서버 접속 완료')
-//   })
-// ).listen(3001, () => {
-//   console.log('서버 작동')
-// })
+const options = {
+  key: fs.readFileSync(__dirname + '/key.pem', 'utf-8'),
+  cert: fs.readFileSync(__dirname + '/cert.pem', 'utf-8')
+};
 
-let server;
-
-server= app.listen(4000, function(){ 
-    console.log('Server is running...');
+let server = https.createServer(options, app).listen(4000, function() {
+  console.log('https 구동')
 });
+
+
+// server= app.listen(4000, function(){ 
+//     console.log('Server is running...');
+// });
 
 module.exports = server

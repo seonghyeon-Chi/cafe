@@ -1,21 +1,11 @@
 const { item } = require('../../models')
 
 module.exports = async (req, res) => {
-  const { itemname, price, image } = req.body
-  console.log(phoneNumber)
-  const [iteminfo, created] = await item.findOrCreate({
-    where: {
-      name: itemname,
-    },
-    defaults: {
-      name: itemname,
-      price: price,
-      image: image
-    }
-  })
-  if (!created) {
-    res.status(403).send({message: 'already exist item'})
-  } else {
-    res.status(201).send('ok')
+  try {
+    const iteminfo = await item.findAll()
+    res.status(200).json({iteminfo: iteminfo})
+  } catch (err) {
+    console.log(err)
+    res.status(404).json({message: '메뉴를 불러오지 못했습니다'})
   }
 }
