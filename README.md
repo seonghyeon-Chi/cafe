@@ -23,20 +23,20 @@
 
 <img src="./img/mvc.png" width="700px" height="600px">
 node.js와 sequelize ORM을 사용하여 MVC 모델을 구성했습니다.
-
+\n
 
 
 <img src="./img/model.png" width="800px" height="400px">
 DB의 경우 MySQL을 사용했습니다. 
 Model은 user, item, order, order_detail, payment, payment_detail로 총 6개의 테이블을 구성했습니다. 
-
+\n
 
 
 <img src="./img/controller.png" width="400px" height="400px">
 Controller는 login, logout, item, order, payment로 총 5개로 구성했습니다.
 HTTPS를 사용했고, express를 사용했습니다.
 session을 사용했고, session을 만들고 cookie를 통해 주고 받기 위해 express-session과 cookie-parser를 사용했습니다. session을 계속 유지하기 위해 session-file-store를 활용했습니다. 환경변수를 활용하기 위해 dotenv도 사용했습니다.
-
+\n
 
 
 ### login
