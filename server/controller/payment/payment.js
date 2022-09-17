@@ -30,16 +30,20 @@ module.exports = async (req, res) => {
           order.destroy({
             where: {user_id: userId}
           })
+        }).catch(err => {
+          console.error(err)
+          res.status(400).json({message: '결제에 실패했습니다'})
         })
         res.status(200).json({message: '성공적으로 결제되었습니다'})
       }
       catch (err) {
-        console.log(err)
+        console.error(err)
+        res.status(400).json({message: '결제에 실패했습니다'})
       }
     }
   }
   catch (err) {
-    console.log(err)
+    console.error(err)
     res.status(400).json({message: '결제에 실패했습니다'})
   }
 }

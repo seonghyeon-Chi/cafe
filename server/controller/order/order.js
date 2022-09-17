@@ -6,8 +6,8 @@ module.exports = async (req, res) => {
   try {
     if (userId) {
       await order.create({
-          user_id: userId,
-          totalPrice: totalPrice
+        user_id: userId,
+        totalPrice: totalPrice
       }).then(res => {
         data.map(el => {
           order_detail.create({
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     }
   }
   catch (err) {
-    console.log(err)
+    console.error(err)
     res.status(400).json({message: '주문에 실패했습니다'})
   }
 }
