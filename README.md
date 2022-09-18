@@ -36,7 +36,7 @@ Model은 user, item, order, order_detail, payment, payment_detail로 총 6개의
 Controller는 login, logout, item, order, payment로 총 5개로 구성했습니다.
 HTTPS를 사용했고, express를 사용했습니다.
 session을 사용했고, session을 만들고 cookie를 통해 주고 받기 위해 express-session과 cookie-parser를 사용했습니다. session을 계속 유지하기 위해 session-file-store를 활용했습니다. 환경변수를 활용하기 위해 dotenv도 사용했습니다.
-__jsonWebToken을 활용해 토큰을 쿠키와 헤더를 통해 주고 받습니다. 미들웨어를 활용하여 토큰의 유효성 체크 역시 logout, order, payment에서 진행합니다.(session과 token 인증은 함께 사용하지 않는 것이 원칙이라 알고 있지만 token 기반 인증 역시 가능하다는 것을 보이기 위해 이렇게 사용했습니다)__
+**jsonWebToken을 활용해 토큰을 쿠키와 헤더를 통해 주고 받습니다. 미들웨어를 활용하여 토큰의 유효성 체크 역시 logout, order, payment에서 진행합니다.(session과 token 인증은 함께 사용하지 않는 것이 원칙이라 알고 있지만 token 기반 인증 역시 가능하다는 것을 보이기 위해 이렇게 사용했습니다)**
 <br/><br/>
 
 
