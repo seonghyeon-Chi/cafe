@@ -6,6 +6,7 @@ const https = require('https')
 const fs = require('fs')
 const session = require('express-session');
 const fileStore = require('session-file-store')(session)
+const authToken = require('./controller/function/auth').checkToken
 require('dotenv').config()
 
 const controller = require('./controller')
@@ -34,10 +35,10 @@ app.use(cors({
 }))
 
 app.post('/login', controller.login)
-app.get('/logout', controller.logout)
+app.get('/logout', authToken, controller.logout)
 app.get('/item', controller.item)
-app.post('/order', controller.order)
-app.post('/payment', controller.payment)
+app.post('/order', authToken, controller.order)
+app.post('/payment', authToken, controller.payment)
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

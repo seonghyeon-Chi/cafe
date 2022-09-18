@@ -9,7 +9,6 @@ import axios from 'axios'
 export default function App() {
   const [item, setItem] = useState([])
   const [isLogin, setIsLogin] = useState(Boolean(document.cookie.match('(^|;) ?' + 'userId' + '=([^;]*)(;|$)')));
-  const [isOrder, setIsOrder] = useState(false)
   const [cart, setCart] = useState([])
   const history = useHistory();
 
@@ -25,8 +24,13 @@ export default function App() {
   }
 
   const handleLogout = () => {
-    axios.get('https://localhost:4000/logout')
+    let token = getCookie('token')
+    axios.get('https://localhost:4000/logout', {
+      headers: {authorization: token}
+    })
     deleteCookie('userId')
+    
+    sessionStorage.clear()
     setIsLogin(false)
     history.push('/');
   };
@@ -54,7 +58,6 @@ export default function App() {
             cart={cart}
             setCart={setCart}
             getCookie={getCookie}
-            isOrder={isOrder}
           ></Main>
         </Route>
         <Route path="/login">

@@ -5,7 +5,7 @@ import CartList from '../components/CartList'
 import '../App.css'
 import axios from 'axios'
 
-const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
+const Main = ({ items, cart, setCart, getCookie }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [itemdata, setItemdata] = useState({
     id: '',
@@ -44,11 +44,14 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
   const handleOrder = (data) => {
     let totalPrice = data.map(item => item.total).reduce((pre, cur) => pre + cur)
     let userId = getCookie('userId')
+    let token = getCookie('token')
     if (userId && data.length !== 0) {
       axios.post('https://localhost:4000/order', {
         data: data,
         totalPrice: totalPrice,
-        userId: userId
+        userId: userId,
+      }, {
+        headers: {authorization: token}
       })
       setCart([]);
       alert('주문이 완료되었습니다')
@@ -59,9 +62,12 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
 
   const handlePayment = () => {
     let userId = getCookie('userId')
+    let token = getCookie('token')
     if (userId) {
       axios.post('https://localhost:4000/payment', {
-        userId: userId
+        userId: userId,
+      },{
+        headers: {authorization: token}
       }).then(res => {
         alert('결제가 완료되었습니다')
       })
@@ -116,7 +122,6 @@ const Main = ({ items, cart, setCart, getCookie, isOrder }) => {
       <CartList 
         width={200}
         cart={cart}
-        isOrder={isOrder}
         handleOrder={handleOrder}
         handlePayment={handlePayment}
         handleDeleteMenu={handleDeleteMenu}

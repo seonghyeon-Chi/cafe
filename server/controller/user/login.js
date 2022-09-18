@@ -1,4 +1,5 @@
 const { user } = require('../../models')
+const token = require('../function/token')
 
 module.exports = async (req, res, next) => {
   const phoneNumber = req.body.phone_number
@@ -12,8 +13,15 @@ module.exports = async (req, res, next) => {
         next(err)
       }
     });
-    res.cookie('userId', req.session.userId)
-    res.status(200).send({message: '로그인 성공'})
+    try {
+      const accessToken = await token.sign(req.session.userId)
+      res.cookie('userId', req.session.userId)
+      res.cookie('token', accessToken)
+      res.status(200).send({message: '로그인 성공'})
+    } catch (err) {
+      console.error(err)
+      next(err)
+    }
   } 
   else {
     try {
@@ -26,8 +34,15 @@ module.exports = async (req, res, next) => {
           next(err)
         }
       });
-      res.cookie('userId', req.session.userId)
-      res.status(201).json({ message: '회원가입 성공'})
+      try {
+        const accessToken = await token.sign(req.session.userId)
+        res.cookie('userId', req.session.userId)
+        res.cookie('token', accessToken)
+        res.status(200).send({message: '회원가입 성공'})
+      } catch (err) {
+        console.error(err)
+        next(err)
+      }
     }
     catch (err) {
       console.error(err)

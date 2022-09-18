@@ -2,6 +2,7 @@
 cert.pem
 key.pem
 
+config
 .DS_Store
 node_modules
 sessions
