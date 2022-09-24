@@ -75,25 +75,7 @@ session을 사용했고, session을 만들고 cookie를 통해 주고 받기 위
 ### 주문 버튼 클릭 화면
 <img src="./img/주문버튼클릭 화면.png" width="700px" height="400px">
 
-### 주문 후 order 테이블
-<img src="./img/주문후 order.png">
-
-### 주문 후 order_detail 테이블
-<img src="./img/주문후 order_detail.png">
-
 ### 결제 버튼 클릭 화면
 <img src="./img/결제버튼클릭 화면.png" width="700px" height="400px">
-
-### 결제 후 payment 테이블
-<img src="./img/결제후 payment.png">
-
-### 결제 후 payment_detail 테이블
-<img src="./img/결제후 payment_detail.png">
-
-### 결제 후 order 테이블
-<img src="./img/결제후 order.png">
-
-### 결제 후 order_detail 테이블
-<img src="./img/결제후 order_detail.png">
 
 
