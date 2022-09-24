@@ -7,7 +7,7 @@
 <img src="./img/schema.png" width="700px" height="400px">
 
 ### API
-* API문서: <https://jiji6027.gitbook.io/torder-test-api/>
+* API문서: <https://jiji6027.gitbook.io/cafe-api>
 
 ### 사용 스택
 <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
